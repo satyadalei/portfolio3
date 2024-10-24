@@ -47,7 +47,7 @@ const portfolioProjects = [
 
 export const ProjectsSection = () => {
   return (
-    <section className="pb-16">
+    <section className="pb-16 lg:pt-24">
       <div className="container">
         <p className="text-center uppercase font-semibold tracking-wider bg-gradient-to-r from-emerald-300 to-sky-400 text-transparent mx-auto w-fit bg-clip-text md:text-lg">
           Real-world Results
@@ -64,7 +64,7 @@ export const ProjectsSection = () => {
             return (
               <div
                 key={project.title}
-                className="bg-gray-800 rounded-3xl relative after:content-[''] z-0 after:absolute after:inset-0 after:z-10 overflow-hidden after:outline-2 after:outline after:-outline-offset-2 after:rounded-3xl after:outline-white/20 px-8 pt-8 md:px-10 md:pt-10 after:pointer-events-none"
+                className="bg-gray-800 rounded-3xl relative after:content-[''] z-0 after:absolute after:inset-0 after:z-10 overflow-hidden after:outline-2 after:outline after:-outline-offset-2 after:rounded-3xl after:outline-white/20 px-8 pt-8 md:px-10 lg:pt-16 lg:px-16 md:pt-10 after:pointer-events-none"
               >
                 <div
                   className="absolute inset-0 -z-10 opacity-5"
@@ -72,46 +72,51 @@ export const ProjectsSection = () => {
                     background: `url(${GrainTexture.src})`,
                   }}
                 ></div>
+                <div className="lg:grid lg:grid-cols-2 lg:gap-16">
+                  <div className="lg:pb-16">
+                    <div className="flex">
+                      <div className="bg-gradient-to-r from-emerald-300 to-sky-400 text-transparent bg-clip-text inline-flex font-bold uppercase gap-2 tracking-widest text-sm md:text-lg">
+                        <span>{project.company}</span>
+                        <span>&bull;</span>
+                        <span>{project.year}</span>
+                      </div>
+                    </div>
+                    <h1 className="font-serif text-2xl md:text-4xl mt-2 md:mt-3">
+                      {project.title}
+                    </h1>
+                    <hr className="border-t-2 border-white/5 mt-4 md:mt-6" />
+                    <ul className="flex flex-col gap-4 mt-4">
+                      {project.results.map((result, i) => {
+                        return (
+                          <li
+                            className="flex gap-2 text-sm md:text-[18px] text-white/50 tracking-wide "
+                            key={result.title}
+                          >
+                            <CheckedIcon className="size-5 md:size-6" />
+                            <span>{result.title}</span>
+                          </li>
+                        );
+                      })}
+                    </ul>
 
-                <div className="flex">
-                  <div className="bg-gradient-to-r from-emerald-300 to-sky-400 text-transparent bg-clip-text inline-flex font-bold uppercase gap-2 tracking-widest text-sm md:text-lg">
-                    <span>{project.company}</span>
-                    <span>&bull;</span>
-                    <span>{project.year}</span>
+                    <a href={project.link} className="">
+                      <button className="bg-white text-gray-900 font-semibold text-lg md:max-w-fit px-5 h-12 rounded-xl w-full inline-flex items-center justify-center gap-1 mt-8">
+                        <span>View Live Site</span>
+                        <span>
+                          <ArrowUp className="size-5" />
+                        </span>
+                      </button>
+                    </a>
+                  </div>
+
+                  <div className="relative">
+                    <Image
+                      className="mt-8 lg:mt-0 -mb-4 lg:absolute lg:h-full lg:max-w-none lg:w-auto"
+                      src={project.image}
+                      alt={project.title}
+                    />
                   </div>
                 </div>
-                <h1 className="font-serif text-2xl md:text-4xl mt-2 md:mt-3">
-                  {project.title}
-                </h1>
-                <hr className="border-t-2 border-white/5 mt-4" />
-                <ul className="flex flex-col gap-4 mt-4">
-                  {project.results.map((result, i) => {
-                    return (
-                      <li
-                        className="flex gap-2 text-sm text-white/50 tracking-wide "
-                        key={result.title}
-                      >
-                        <CheckedIcon className="size-5" />
-                        <span>{result.title}</span>
-                      </li>
-                    );
-                  })}
-                </ul>
-
-                <a href={project.link} className="">
-                  <button className="bg-white text-gray-900 font-semibold text-lg max-w-72 h-12 rounded-xl w-full inline-flex items-center justify-center gap-1 mt-8">
-                    <span>View Live Site</span>
-                    <span>
-                      <ArrowUp className="size-5" />
-                    </span>
-                  </button>
-                </a>
-
-                <Image
-                  className="mt-8 -mb-4"
-                  src={project.image}
-                  alt={project.title}
-                />
               </div>
             );
           })}
