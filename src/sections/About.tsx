@@ -89,7 +89,7 @@ const hobbies = [
 
 export const AboutSection = () => {
   return (
-    <div className="py-20 pb-[1200px] lg:py-24">
+    <div className="py-20 lg:py-24">
       <div className="container">
         <SectionHeader
           eyebrow="About Me"
@@ -117,7 +117,7 @@ export const AboutSection = () => {
                 title="My Toolbox"
                 description="Explore the technologies and tools I use to craft exceptional
               digital experience."
-                className="px-6 pt-6"
+                className=""
               />
               <ToolboxItems items={toolboxItems} className="mt-6" />
               <ToolboxItems

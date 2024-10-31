@@ -12,7 +12,7 @@ const CardHeader = ({
   className?: string;
 }) => {
   return (
-    <div className={twMerge("", className)}>
+    <div className={twMerge("px-6 pt-6", className)}>
       <div className="flex items-center gap-4">
         <StarIcon className="size-10 text-emerald-300" />
         <h3 className="text-3xl font-serif">{title}</h3>
