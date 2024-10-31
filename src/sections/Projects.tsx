@@ -62,7 +62,10 @@ export const ProjectsSection = () => {
             return (
               <Card
                 key={project.title}
-                className="px-8 pt-8 md:px-10 pb-0 lg:pt-16 lg:px-16 md:pt-10"
+                className="px-8 pt-8 md:px-10 pb-0 lg:pt-16 lg:px-16 md:pt-10 sticky"
+                style={{
+                  top: `calc(64px + ${i * 20}px)`,
+                }}
               >
                 <div className="lg:grid lg:grid-cols-2 lg:gap-16">
                   <div className="lg:pb-16">
