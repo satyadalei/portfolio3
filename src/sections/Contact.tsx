@@ -2,7 +2,7 @@ import ArrowIcon from "@/assets/icons/arrow-up-right.svg";
 import grainImage from "@/assets/images/grain.jpg";
 export const ContactSection = () => {
   return (
-    <div className="pt-14 lg:pt-20 pb-[1200px]">
+    <div className="pt-14 lg:pt-20">
       <div className="container">
         <div className="bg-gradient-to-r from-emerald-400 to-sky-300 rounded-3xl py-8 px-10 text-gray-900 text-center md:text-left relative overflow-hidden z-0 md:flex items-center gap-10 md:gap-16">
           <div
