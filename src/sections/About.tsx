@@ -1,6 +1,6 @@
+"use client";
 import Card from "@/components/Card";
 import SectionHeader from "@/components/SectionHeader";
-import StarIcon from "@/assets/icons/star.svg";
 import Image from "next/image";
 import bookImage from "@/assets/images/book-cover.png";
 import JavaScriptIcon from "@/assets/icons/square-js.svg";
@@ -9,11 +9,12 @@ import CssIcon from "@/assets/icons/css3.svg";
 import GitHubIcon from "@/assets/icons/github.svg";
 import ChromeIcon from "@/assets/icons/chrome.svg";
 import ReactIcon from "@/assets/icons/react.svg";
-import TechIcon from "@/components/TechIcon";
 import mapImage from "@/assets/images/map.png";
 import SmileEmoji from "@/assets/images/memoji-smile.png";
 import CardHeader from "@/components/CardHeader";
 import ToolboxItems from "@/components/ToolboxItems";
+import { motion } from "framer-motion";
+import { useRef } from "react";
 
 const toolboxItems = [
   {
@@ -88,6 +89,7 @@ const hobbies = [
 ];
 
 export const AboutSection = () => {
+  const ref = useRef(null);
   return (
     <div className="py-20 lg:py-24">
       <div className="container">
@@ -119,11 +121,15 @@ export const AboutSection = () => {
               digital experience."
                 className=""
               />
-              <ToolboxItems items={toolboxItems} className="mt-6" />
+              <ToolboxItems
+                itemsWrapperClass="animate-move-left [animation-duration:20s]"
+                items={toolboxItems}
+                className="mt-6"
+              />
               <ToolboxItems
                 items={toolboxItems}
                 className="mt-6"
-                itemsWrapperClass="-translate-x-1/2 "
+                itemsWrapperClass="animate-move-right [animation-duration:15s]"
               />
             </Card>
           </div>
@@ -134,22 +140,24 @@ export const AboutSection = () => {
                 title="Beyond Code"
                 description="Explore my interest and hobbies beyond digital realm."
               />
-              <div className="flex-1 relative">
+              <div className="flex-1 relative" ref={ref}>
                 {hobbies.map((hobby, i) => {
                   return (
-                    <div
-                      className="inline-flex gap-2 px-6 rounded-full py-1.5 bg-gradient-to-r from-emerald-300 to-sky-400 absolute"
+                    <motion.div
+                      className="inline-flex items-center gap-2 px-6 rounded-full py-1.5 bg-gradient-to-r from-emerald-300 to-sky-400 absolute"
                       key={hobby.title}
                       style={{
                         top: hobby.top,
                         left: hobby.left,
                       }}
+                      drag
+                      dragConstraints={ref}
                     >
                       <span className="font-medium text-gray-950">
                         {hobby.title}
                       </span>
                       <span>{hobby.emoji}</span>
-                    </div>
+                    </motion.div>
                   );
                 })}
               </div>
@@ -163,12 +171,14 @@ export const AboutSection = () => {
                 alt="Map"
                 className="h-full w-full object-cover object-left-top"
               />
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-emerald-400 to-sky-300 size-20 rounded-full after:content-[''] after:outline after:outline-2 after:absolute after:inset-0 after-outline-offset-2 after:rounded-full after:-outline-offset-2 after:outline-gray-950/30">
+              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 size-20 rounded-full after:content-[''] after:outline after:outline-2 after:absolute after:inset-0 after-outline-offset-2 after:rounded-full after:-outline-offset-2 after:outline-gray-950/30">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-sky-300 rounded-full"></div>
+                <div className="absolute inset-0 animate-ping [animation-duration:2s] bg-gradient-to-r from-emerald-400 to-sky-300 rounded-full"></div>
                 <Image
                   width={40}
                   height={40}
                   src={SmileEmoji.src}
-                  className="size-20"
+                  className="size-20 relative z-10"
                   alt="Map"
                 />
               </div>
