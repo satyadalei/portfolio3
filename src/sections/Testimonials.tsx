@@ -6,6 +6,7 @@ import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png";
 import Card from "@/components/Card";
 import SectionHeader from "@/components/SectionHeader";
 import Image from "next/image";
+import { Fragment } from "react";
 
 const testimonials = [
   {
@@ -51,33 +52,39 @@ export const TestimonialsSection = () => {
         about my work."
         />
 
-        <div className="mt-16 lg:mt-24 flex overflow-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex flex-none gap-8 lg:gap-10">
-            {testimonials.map((testimonial, i) => {
+        <div className="mt-16 lg:mt-24 flex overflow-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] py-4 -my-4">
+          <div className="flex flex-none gap-8 pr-8 lg:gap-10 animate-move-left [animation-duration:60s] hover:[animation-play-state:paused]">
+            {[...new Array(2)].map((_, idx) => {
               return (
-                <Card
-                  key={testimonial.name}
-                  className="max-w-xs md:max-w-md md:p-8 lg:p-10"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="bg-gray-700 size-14 rounded-full flex-none flex justify-center items-center">
-                      <Image
-                        className="max-h-full"
-                        src={testimonial.avatar}
-                        alt={testimonial.name}
-                      />
-                    </div>
-                    <div>
-                      <p className="font-semibold">{testimonial.name}</p>
-                      <p className="text-sm mt-1 text-white/50">
-                        {testimonial.position}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="mt-4 md:mt-6 text-sm md:text-base">
-                    {testimonial.text}
-                  </p>
-                </Card>
+                <Fragment key={idx}>
+                  {testimonials.map((testimonial, i) => {
+                    return (
+                      <Card
+                        key={testimonial.name}
+                        className="max-w-xs md:max-w-md md:p-8 lg:p-10 hover:-rotate-3 transition duration-300"
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="bg-gray-700 size-14 rounded-full flex-none flex justify-center items-center">
+                            <Image
+                              className="max-h-full"
+                              src={testimonial.avatar}
+                              alt={testimonial.name}
+                            />
+                          </div>
+                          <div>
+                            <p className="font-semibold">{testimonial.name}</p>
+                            <p className="text-sm mt-1 text-white/50">
+                              {testimonial.position}
+                            </p>
+                          </div>
+                        </div>
+                        <p className="mt-4 md:mt-6 text-sm md:text-base">
+                          {testimonial.text}
+                        </p>
+                      </Card>
+                    );
+                  })}
+                </Fragment>
               );
             })}
           </div>
